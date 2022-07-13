@@ -1,10 +1,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/kotlin,firebase,androidstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=kotlin,firebase,androidstudio
 
+
+##sdgs
+
 ### Firebase ###
 .idea
 **/node_modules/*
-**/.firebaserc
+**/.firebasercgit
 
 ### Firebase Patch ###
 .runtimeconfig.json
