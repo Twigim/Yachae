@@ -7,10 +7,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="회원가입"
+        android:text="로그인"
         android:textSize="50dp"
         android:textAlignment="center">
-
     </TextView>
 
     <EditText
@@ -27,27 +26,11 @@
         android:hint="비밀번호">
     </EditText>
 
-    <EditText
-        android:id="@+id/passwordCheckEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="비밀번호 확인">
-    </EditText>
-
     <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="회원가입">
-
-    </Button>
-
-    <Button
-        android:id="@+id/gotoLoginButton"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그인">
-
     </Button>
 
 </LinearLayout>

@@ -1,17 +1,19 @@
 package com.cookandroid.yachae
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private var TAG : String = "SingUpActivity"
+    private var TAG : String = "SignUpActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,12 +24,22 @@ class SignUpActivity : AppCompatActivity() {
 
 
         var signUpButton : Button
+        var gotoLoginButton : Button
+
 
         signUpButton = findViewById(R.id.signUpButton)
+        gotoLoginButton = findViewById(R.id.gotoLoginButton)
 
-        signUpButton.setOnClickListener {
+
+        // 추후에 코드 수정 예정. 함수 개수 줄이기 위함
+        signUpButton.setOnClickListener() {
             Log.d("test log", "개발자용 로그")
             signUp()
+        }
+
+        gotoLoginButton.setOnClickListener {
+            Log.d("test log", "로그인 화면으로 넘어가기~~~")
+            gotoLoginActivity()
         }
     }
 
@@ -40,23 +52,47 @@ class SignUpActivity : AppCompatActivity() {
     public fun signUp(){
         var email : String
         var password : String
+        var passwordCheck : String
 
         email = findViewById<EditText?>(R.id.emailEditText).text.toString()
         password = findViewById<EditText?>(R.id.passwordEditText).text.toString()
+        passwordCheck = findViewById<EditText?>(R.id.passwordCheckEditText).text.toString()
 
+        // 이메일, 비번, 비번 확인 입력란 선택 시
+        if(email.length>0 && password.length >0 && passwordCheck.length > 0){
+            if(password.equals(passwordCheck)){
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val user = auth.currentUser
+                            startToast("회원가입에 성공했습니다.")
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                            if(task.exception!=null){
+                                startToast(task.exception.toString())
+                            }
+                        }
+                    }
 
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                }
+            }else{
+                startToast("비밀번호가 일치하지 않습니다")
             }
+        }else{
+            startToast("이메일 또는 비밀번호를 확인해 주세요.")
+        }
+    }
+
+    private fun startToast(msg:String){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun gotoLoginActivity(){
+        val intent = Intent(this, LoginActivity::class.java)
+
+        startActivity(intent)
+
     }
 
 }
