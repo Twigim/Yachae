@@ -38,12 +38,12 @@ class SignUpActivity {
             signUpButton = findViewById<Button>(R.id.signUpButton)
             signUpButton.setOnClickListener{
                 Log.d("test log", "개발자용 로그")
-                signUp()
+                signUpEmail()
             }
 
             googleSignUnButton = findViewById<Button>(R.id.googleSignUnButton)
             googleSignUnButton.setOnClickListener {
-                //First step
+                //1
                 googleLogin()
             }
             var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -51,6 +51,28 @@ class SignUpActivity {
                 .requestEmail()
                 .build()
             googleSignInClient = GoogleSignIn.getClient(this, gso)
+        }
+
+        public fun signUpEmail() {
+            var email : String
+            var password : String
+
+            email = findViewById<EditText>(R.id.email).text.toString()
+            password = findViewById<EditText>(R.id.password).text.toString()
+
+            auth.createUserWithEmailAndPassword(email, password)    //회원가입
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "createUserWithEmail:success")
+                        val user = auth.currentUser
+                        //UI
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        //UI
+                    }
+                }
         }
 
         public override fun onStart() {
@@ -61,11 +83,13 @@ class SignUpActivity {
         fun googleLogin() {
             var signInIntent = googleSignInClient?.signInIntent
             startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
+            Log.d("로그인", "로그인")
         }
 
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
             if(requestCode == GOOGLE_LOGIN_CODE) {
+                //구글에서 제공하는 로그인 결과값 받아오기
                 var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)
                 // result가 성공했을 때 이 값을 firebase에 넘겨주기
                 if(result!!.isSuccess) {
@@ -76,7 +100,7 @@ class SignUpActivity {
             }
         }
 
-        private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
+        fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
             var credential = GoogleAuthProvider.getCredential(account?.idToken,null)
             auth?.signInWithCredential(credential)
                 ?.addOnCompleteListener {
@@ -84,7 +108,6 @@ class SignUpActivity {
                     if(task.isSuccessful) {
                         //Login, 아이디와 패스워드가 맞았을 때
                         Toast.makeText(this,  "success", Toast.LENGTH_LONG).show()
-                        //Log.d("성공", "성공")
                     } else {
                         // Show the error message, 아이디와 패스워드가 틀렸을 때
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -92,26 +115,6 @@ class SignUpActivity {
                 }
         }
 
-        public fun signUp() {
-            var email : String
-            var password : String
 
-            email = findViewById<EditText>(R.id.email).text.toString()
-            password = findViewById<EditText>(R.id.password).text.toString()
-
-        auth.createUserWithEmailAndPassword(email, password)    //회원가입
-        .addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
-                Log.d(TAG, "createUserWithEmail:success")
-                val user = auth.currentUser
-                //UI
-            } else {
-                // If sign in fails, display a message to the user.
-                Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                //UI
-            }
-        }
-        }
     }
 }
