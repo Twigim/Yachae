@@ -24,14 +24,20 @@ class LoginActivity : AppCompatActivity() {
 
 
         var loginButton : Button
+        var gotoSignUpButton :Button
 
         loginButton = findViewById(R.id.loginButton)
+        gotoSignUpButton = findViewById(R.id.gotoSignUpButton)
 
 
         // 추후에 코드 수정 예정. 함수 개수 줄이기 위함
         loginButton.setOnClickListener() {
             Log.d("test log", "개발자용 로그")
             signIn()
+        }
+
+        gotoSignUpButton.setOnClickListener {
+            gotoSignUpActivity()
         }
 
     }
@@ -73,11 +79,15 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
+
     private fun gotoMainActivity(){
         val intent = Intent(this, MainActivity::class.java)
-
         startActivity(intent)
+    }
 
+    private fun gotoSignUpActivity(){
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
 

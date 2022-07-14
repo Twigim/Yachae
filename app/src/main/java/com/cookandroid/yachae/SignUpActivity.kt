@@ -28,7 +28,6 @@ class SignUpActivity : AppCompatActivity() {
 
 
         signUpButton = findViewById(R.id.signUpButton)
-        gotoLoginButton = findViewById(R.id.gotoLoginButton)
 
 
         // 추후에 코드 수정 예정. 함수 개수 줄이기 위함
@@ -37,10 +36,6 @@ class SignUpActivity : AppCompatActivity() {
             signUp()
         }
 
-        gotoLoginButton.setOnClickListener {
-            Log.d("test log", "로그인 화면으로 넘어가기~~~")
-            gotoLoginActivity()
-        }
     }
 
     public override fun onStart() {
@@ -66,6 +61,7 @@ class SignUpActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val user = auth.currentUser
                             startToast("회원가입에 성공했습니다.")
+                            gotoMainActivity()
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -88,8 +84,8 @@ class SignUpActivity : AppCompatActivity() {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    private fun gotoLoginActivity(){
-        val intent = Intent(this, LoginActivity::class.java)
+    private fun gotoMainActivity(){
+        val intent = Intent(this, MainActivity::class.java)
 
         startActivity(intent)
 
