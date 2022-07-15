@@ -94,7 +94,7 @@ class SignUpActivity {
                 // result가 성공했을 때 이 값을 firebase에 넘겨주기
                 if(result!!.isSuccess) {
                     var account = result.signInAccount
-                    // Second step
+                    // 2
                     firebaseAuthWithGoogle(account)
                 }
             }
@@ -108,6 +108,8 @@ class SignUpActivity {
                     if(task.isSuccessful) {
                         //Login, 아이디와 패스워드가 맞았을 때
                         Toast.makeText(this,  "success", Toast.LENGTH_LONG).show()
+                        val userintent = Intent(this, UserInfoActivity::class.java)
+                        startActivity(userintent)
                     } else {
                         // Show the error message, 아이디와 패스워드가 틀렸을 때
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
