@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "9599629927",
+    "firebase_url": "https://firesbase-test-6330e-default-rtdb.firebaseio.com",
+    "project_id": "firesbase-test-6330e",
+    "storage_bucket": "firesbase-test-6330e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9599629927:android:8430529e5914eb672e32c2",
+        "android_client_info": {
+          "package_name": "com.cookandroid.yachae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9599629927-v88lp61saqi49vn682nhqolbbci92fas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cookandroid.yachae",
+            "certificate_hash": "44767cc11837f60c198d3e505a494c7e14b71688"
+          }
+        },
+        {
+          "client_id": "9599629927-q3m7c7pfc626plqn3kej15hg4tqi4au3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjlLtnEo5PFLDh6kb0xdU67SaHJxylXw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9599629927-q3m7c7pfc626plqn3kej15hg4tqi4au3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
