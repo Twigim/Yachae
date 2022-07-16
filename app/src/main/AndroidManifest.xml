@@ -34,6 +34,7 @@
                     android:host="google.com" />
             </intent-filter>
         </activity>
+        <activity android:name = "UserInfoActivity"/>
     </application>
 
 </manifest>

@@ -35,12 +35,14 @@ class SignUpActivity {
             var signUpButton : Button
             var googleSignUnButton : Button
 
+            //이메일 로그인
             signUpButton = findViewById<Button>(R.id.signUpButton)
             signUpButton.setOnClickListener{
                 Log.d("test log", "개발자용 로그")
                 signUpEmail()
             }
 
+            //구글로그인
             googleSignUnButton = findViewById<Button>(R.id.googleSignUnButton)
             googleSignUnButton.setOnClickListener {
                 //1
@@ -50,7 +52,9 @@ class SignUpActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
+
             googleSignInClient = GoogleSignIn.getClient(this, gso)
+            googleSignInClient?.signOut()     //재로그인시 자동로그인 방지(구글계정선택 가능)
         }
 
         public fun signUpEmail() {
