@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
@@ -61,7 +62,9 @@ class SignUpActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val user = auth.currentUser
                             startToast("회원가입에 성공했습니다.")
-                            gotoMainActivity()
+                            //gotoMainActivity()
+                            gotoRegisterInfoActivity()
+                            saveUserToFirebaseStorage()
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -84,11 +87,30 @@ class SignUpActivity : AppCompatActivity() {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    private fun gotoMainActivity(){
-        val intent = Intent(this, MainActivity::class.java)
+    //private fun gotoMainActivity(){
+        //val intent = Intent(this, MainActivity::class.java)
+
+        //startActivity(intent)
+
+   // }
+
+    private fun gotoRegisterInfoActivity(){
+        val intent = Intent(this, RegisterInfoActivity::class.java)
 
         startActivity(intent)
 
     }
 
+    private fun saveUserToFirebaseStorage(){
+        val uid = FirebaseAuth.getInstance().uid ?:""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+
+        val user = User(uid)
+        ref .setValue(user).addOnSuccessListener {
+            Log.d("RegisterInfoActivity", "firebase에 유저 정보 저장 성공!!")
+        }
+
+    }
+
 }
+class User(val uid: String)
