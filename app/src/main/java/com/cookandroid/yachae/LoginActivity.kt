@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        startToast("회원가입에 성공했습니다.")
+                        startToast("로그인에 성공했습니다.")
                     }
                 }
         }else{
