@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="20dp"
+        android:text="YA-CHAE"
+        android:textSize="50dp"
+        android:textAlignment="center">
+    </TextView>
+
+    <EditText
+        android:focusedByDefault="false"
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edittext"
+        android:hint="이메일">
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/edittext"
+        android:hint="비밀번호">
+    </EditText>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_button"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:text="로그인">
+    </Button>
+
+    <TextView
+        android:id="@+id/gotoSignUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:textAlignment="center"
+        android:text="회원가입">
+    </TextView>
+
+</LinearLayout>

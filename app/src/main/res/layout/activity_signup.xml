@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="146dp"
+        android:layout_marginBottom="20dp"
+        android:text="회원가입"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:textAlignment="center">
+    </TextView>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edittext"
+        android:hint="이메일">
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edittext"
+        android:hint="비밀번호">
+    </EditText>
+
+    <EditText
+        android:id="@+id/passwordCheckEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/edittext"
+        android:hint="비밀번호 확인">
+    </EditText>
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_button"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:text="회원가입">
+    </Button>
+
+
+</LinearLayout>
